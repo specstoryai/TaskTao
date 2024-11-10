@@ -1,0 +1,51 @@
+<div class="card bg-base-200 shadow-xl" style="border-left: 4px solid <%= area.color %>">
+  <div class="card-body">
+    <div class="flex justify-between items-center">
+      <h2 class="card-title">
+        <%= area.title %>
+        <div class="badge <%= area.active ? 'badge-success' : 'badge-ghost' %>">
+          <%= area.active ? 'Active' : 'Inactive' %>
+        </div>
+      </h2>
+      
+      <div class="dropdown dropdown-end">
+        <button class="btn btn-ghost btn-sm btn-circle">⋮</button>
+        <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+          <li>
+            <a href="#" hx-get="/areas/<%= area.id %>/edit" hx-target="#modal">Edit</a>
+          </li>
+          <li>
+            <a href="#" hx-delete="/areas/<%= area.id %>" class="text-error">Delete</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <% if area.description %>
+      <p class="text-gray-500"><%= area.description %></p>
+    <% end %>
+
+    <div class="divider">Important Tasks</div>
+    <div class="space-y-4">
+      <%= erb :'planning/_task_list', locals: { tasks: area.tasks.select { |t| t.type == 'important' }, date: date } %>
+    </div>
+
+    <div class="divider">Urgent Tasks</div>
+    <div class="space-y-4">
+      <%= erb :'planning/_task_list', locals: { tasks: area.tasks.select { |t| t.type == 'urgent' }, date: date } %>
+    </div>
+
+    <div class="card-actions justify-end mt-4">
+      <button class="btn btn-ghost btn-sm"
+              hx-get="/tasks/new?area_id=<%= area.id %>&type=important"
+              hx-target="#modal">
+        Add Important Task
+      </button>
+      <button class="btn btn-ghost btn-sm"
+              hx-get="/tasks/new?area_id=<%= area.id %>&type=urgent"
+              hx-target="#modal">
+        Add Urgent Task
+      </button>
+    </div>
+  </div>
+</div> 

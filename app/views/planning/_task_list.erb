@@ -1,0 +1,39 @@
+<% tasks.each do |task| %>
+  <div class="flex items-center gap-4 p-2 rounded-lg hover:bg-base-300">
+    <input type="checkbox"
+           class="checkbox"
+           <%= 'checked' if task.completed %>
+           hx-post="/tasks/<%= task.id %>/toggle"
+           hx-swap="outerHTML"
+           hx-target="closest div">
+    
+    <div class="flex-1">
+      <div class="<%= task.completed ? 'line-through text-gray-500' : '' %>">
+        <%= task.title %>
+      </div>
+      <% if task.description %>
+        <div class="text-sm text-gray-500"><%= task.description %></div>
+      <% end %>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <input type="checkbox"
+             class="toggle toggle-primary toggle-sm"
+             <%= 'checked' if task.for_today %>
+             hx-post="/tasks/<%= task.id %>/toggle_today">
+      <label class="text-sm">Today</label>
+      
+      <div class="dropdown dropdown-end">
+        <button class="btn btn-ghost btn-sm btn-circle">⋮</button>
+        <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+          <li>
+            <a href="#" hx-get="/tasks/<%= task.id %>/edit" hx-target="#modal">Edit</a>
+          </li>
+          <li>
+            <a href="#" hx-delete="/tasks/<%= task.id %>" class="text-error">Delete</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<% end %> 

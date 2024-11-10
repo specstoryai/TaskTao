@@ -1,0 +1,40 @@
+<div class="card bg-base-200 shadow-xl" style="border-left: 4px solid <%= task.area.color %>">
+  <div class="card-body p-4">
+    <div class="flex items-center gap-4">
+      <button class="btn btn-circle btn-sm <%= task.completed ? 'btn-success' : 'btn-ghost' %>"
+              hx-post="/tasks/<%= task.id %>/toggle"
+              hx-swap="outerHTML"
+              hx-target="closest div">
+        <% if task.completed %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+        <% end %>
+      </button>
+      
+      <div class="flex-1">
+        <h3 class="font-bold <%= task.completed ? 'line-through text-gray-500' : '' %>">
+          <%= task.title %>
+        </h3>
+        <div class="text-sm text-gray-500">
+          <%= task.area.title %>
+        </div>
+      </div>
+
+      <div class="dropdown dropdown-end">
+        <button class="btn btn-ghost btn-sm btn-circle">⋮</button>
+        <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+          <li>
+            <a href="#" hx-post="/tasks/<%= task.id %>/toggle_today">Remove from Today</a>
+          </li>
+          <li>
+            <a href="#" hx-get="/tasks/<%= task.id %>/edit" hx-target="#modal">Edit</a>
+          </li>
+          <li>
+            <a href="#" hx-delete="/tasks/<%= task.id %>" class="text-error">Delete</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> 

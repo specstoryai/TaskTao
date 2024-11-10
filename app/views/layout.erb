@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskTao</title>
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-base-100">
+  <div class="navbar bg-base-200">
+    <div class="flex-1">
+      <a href="/" class="btn btn-ghost text-xl">TaskTao</a>
+    </div>
+    <div class="flex-none">
+      <ul class="menu menu-horizontal px-1">
+        <li><a href="/capture" class="btn btn-ghost" hx-boost="true">Capture</a></li>
+        <li><a href="/planning" class="btn btn-ghost" hx-boost="true">Planning</a></li>
+        <li><a href="/action" class="btn btn-ghost" hx-boost="true">Action</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 py-8">
+    <%= yield %>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-box"></div>
+  </div>
+</body>
+</html> 

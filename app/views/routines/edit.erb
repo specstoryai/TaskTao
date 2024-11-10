@@ -1,0 +1,35 @@
+<div class="modal-box">
+  <h3 class="font-bold text-lg mb-4">Edit Routine</h3>
+  
+  <form hx-patch="/routines/<%= @routine.id %>" class="space-y-4">
+    <div class="form-control">
+      <label class="label">Title</label>
+      <input type="text" 
+             name="routine[title]" 
+             value="<%= @routine.title %>"
+             class="input input-bordered w-full">
+    </div>
+
+    <div class="form-control">
+      <label class="label">Description</label>
+      <textarea name="routine[description]" 
+                class="textarea textarea-bordered h-24"><%= @routine.description %></textarea>
+    </div>
+
+    <div class="form-control">
+      <label class="label">Frequency</label>
+      <select name="routine[frequency]" class="select select-bordered w-full">
+        <option value="daily" <%= 'selected' if @routine.frequency == 'daily' %>>Daily</option>
+        <option value="weekly" <%= 'selected' if @routine.frequency == 'weekly' %>>Weekly</option>
+        <option value="monthly" <%= 'selected' if @routine.frequency == 'monthly' %>>Monthly</option>
+        <option value="quarterly" <%= 'selected' if @routine.frequency == 'quarterly' %>>Quarterly</option>
+        <option value="yearly" <%= 'selected' if @routine.frequency == 'yearly' %>>Yearly</option>
+      </select>
+    </div>
+
+    <div class="modal-action">
+      <button type="button" class="btn" onclick="modal.close()">Cancel</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </form>
+</div> 

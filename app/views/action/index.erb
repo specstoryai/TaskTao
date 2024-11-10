@@ -1,0 +1,41 @@
+<div class="text-center mb-8">
+  <h1 class="text-3xl font-bold"><%= @date.strftime('%A, %B %d') %></h1>
+</div>
+
+<div class="grid grid-cols-3 gap-8">
+  <div class="space-y-4">
+    <h2 class="text-xl font-bold text-center">Important</h2>
+    <div class="text-sm text-center text-gray-500">
+      <%= @important_tasks.count(&:completed) %> / <%= @important_tasks.count %>
+    </div>
+    <div class="space-y-4">
+      <% @important_tasks.each do |task| %>
+        <%= erb :'action/_task', locals: { task: task } %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="space-y-4">
+    <h2 class="text-xl font-bold text-center">Urgent</h2>
+    <div class="text-sm text-center text-gray-500">
+      <%= @urgent_tasks.count(&:completed) %> / <%= @urgent_tasks.count %>
+    </div>
+    <div class="space-y-4">
+      <% @urgent_tasks.each do |task| %>
+        <%= erb :'action/_task', locals: { task: task } %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="space-y-4">
+    <h2 class="text-xl font-bold text-center">Routines</h2>
+    <div class="text-sm text-center text-gray-500">
+      <%= @routines.count(&:completed) %> / <%= @routines.count %>
+    </div>
+    <div class="space-y-4">
+      <% @routines.each do |routine| %>
+        <%= erb :'action/_routine', locals: { routine: routine } %>
+      <% end %>
+    </div>
+  </div>
+</div> 

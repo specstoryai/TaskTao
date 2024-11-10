@@ -1,0 +1,47 @@
+<div class="flex justify-between items-center mb-8">
+  <h1 class="text-2xl font-bold">Planning</h1>
+  
+  <div class="flex items-center space-x-4">
+    <button class="btn btn-ghost" 
+            hx-get="/planning?date=<%= @date - 1 %>"
+            hx-push-url="true">
+      Previous Day
+    </button>
+    
+    <input type="date" 
+           value="<%= @date %>"
+           class="input input-bordered"
+           hx-get="/planning"
+           hx-trigger="change"
+           hx-push-url="true"
+           name="date">
+    
+    <button class="btn btn-ghost"
+            hx-get="/planning?date=<%= @date + 1 %>"
+            hx-push-url="true">
+      Next Day
+    </button>
+
+    <% if @date != Date.today %>
+      <button class="btn btn-primary"
+              hx-get="/planning"
+              hx-push-url="true">
+        Today
+      </button>
+    <% end %>
+  </div>
+</div>
+
+<div class="grid grid-cols-1 gap-8">
+  <% @areas.each do |area| %>
+    <%= erb :'planning/_area', locals: { area: area, date: @date } %>
+  <% end %>
+
+  <div class="text-center">
+    <button class="btn btn-ghost"
+            hx-get="/areas/new"
+            hx-target="#modal">
+      Add Area
+    </button>
+  </div>
+</div> 

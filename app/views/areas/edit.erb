@@ -1,0 +1,42 @@
+<div class="modal-box">
+  <h3 class="font-bold text-lg mb-4">Edit Area</h3>
+  
+  <form hx-patch="/areas/<%= @area.id %>" class="space-y-4">
+    <div class="form-control">
+      <label class="label">Title</label>
+      <input type="text" 
+             name="area[title]" 
+             value="<%= @area.title %>"
+             class="input input-bordered w-full">
+    </div>
+
+    <div class="form-control">
+      <label class="label">Description</label>
+      <textarea name="area[description]" 
+                class="textarea textarea-bordered h-24"><%= @area.description %></textarea>
+    </div>
+
+    <div class="form-control">
+      <label class="label">Color</label>
+      <input type="color" 
+             name="area[color]" 
+             value="<%= @area.color %>"
+             class="input input-bordered w-full h-12">
+    </div>
+
+    <div class="form-control">
+      <label class="label cursor-pointer">
+        <span class="label-text">Active</span>
+        <input type="checkbox" 
+               name="area[active]" 
+               <%= 'checked' if @area.active %>
+               class="toggle toggle-primary">
+      </label>
+    </div>
+
+    <div class="modal-action">
+      <button type="button" class="btn" onclick="modal.close()">Cancel</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </form>
+</div> 

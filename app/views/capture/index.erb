@@ -1,0 +1,46 @@
+<div class="max-w-lg mx-auto">
+  <h1 class="text-2xl font-bold mb-6">Capture Task</h1>
+  
+  <form hx-post="/tasks" hx-target="#tasks-list" class="space-y-4">
+    <div class="form-control">
+      <input type="text" 
+             name="task[title]" 
+             placeholder="What needs to be done?" 
+             class="input input-bordered w-full"
+             autofocus>
+    </div>
+
+    <div class="flex space-x-4">
+      <div class="form-control flex-1">
+        <select name="task[area_id]" class="select select-bordered w-full">
+          <% @areas.each do |area| %>
+            <option value="<%= area.id %>" <%= 'selected' if area == @last_area %>>
+              <%= area.title %>
+            </option>
+          <% end %>
+        </select>
+      </div>
+
+      <div class="form-control flex-1">
+        <select name="task[type]" class="select select-bordered w-full">
+          <option value="important">Important</option>
+          <option value="urgent">Urgent</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="text-right">
+      <button type="submit" class="btn btn-primary">Save Task</button>
+    </div>
+  </form>
+
+  <div class="text-sm text-gray-500 mt-8">
+    <p>Keyboard shortcuts:</p>
+    <ul class="list-disc list-inside">
+      <li>↑/↓: Change area</li>
+      <li>←/→: Change type</li>
+      <li>Enter: Save task</li>
+      <li>Esc: Cancel</li>
+    </ul>
+  </div>
+</div> 
