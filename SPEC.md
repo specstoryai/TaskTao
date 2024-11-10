@@ -1,4 +1,3 @@
-
 # Overview
 
 TaskTao is an app for managing tasks. 
@@ -85,7 +84,7 @@ Capture mode is a focused mode for quickly capturing tasks. It allows for a very
 
 Only active areas are shown in the capture mode.
 
-Capture mode can be entered at any time by pressing the "Capture" button in the header or by pressing Command + \ on the keyboard.
+Capture mode can be entered at any time by pressing the "Capture" button in the header or by pressing Command+/ (Ctrl+/ on Windows/Linux) on the keyboard.
 
 The most recently used area is defaulted as the selected area.
 
