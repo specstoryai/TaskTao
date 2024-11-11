@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '3.3.6'
+
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sequel'
@@ -8,6 +10,7 @@ gem 'rack'
 gem 'erb'
 gem 'rake'
 gem 'dotenv'
+gem 'semantic_logger'
 
 group :development do
   gem 'puma'
