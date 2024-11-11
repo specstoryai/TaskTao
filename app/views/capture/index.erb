@@ -7,12 +7,15 @@
              name="task[title]" 
              placeholder="What needs to be done?" 
              class="input input-bordered w-full"
+             id="task-title"
              autofocus>
     </div>
 
     <div class="flex space-x-4">
       <div class="form-control flex-1">
-        <select name="task[area_id]" class="select select-bordered w-full">
+        <select name="task[area_id]" 
+                class="select select-bordered w-full"
+                id="task-area">
           <% @areas.each do |area| %>
             <option value="<%= area.id %>" <%= 'selected' if area == @last_area %>>
               <%= area.title %>
@@ -22,7 +25,9 @@
       </div>
 
       <div class="form-control flex-1">
-        <select name="task[type]" class="select select-bordered w-full">
+        <select name="task[type]" 
+                class="select select-bordered w-full"
+                id="task-type">
           <option value="important">Important</option>
           <option value="urgent">Urgent</option>
         </select>
@@ -43,4 +48,50 @@
       <li>Esc: Cancel</li>
     </ul>
   </div>
-</div> 
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const titleInput = document.getElementById('task-title');
+    const areaSelect = document.getElementById('task-area');
+    const typeSelect = document.getElementById('task-type');
+
+    document.addEventListener('keydown', function(e) {
+      // Only handle shortcuts when title input is focused
+      if (document.activeElement !== titleInput) return;
+
+      switch(e.key) {
+        case 'ArrowUp':
+          e.preventDefault();
+          const prevOption = areaSelect.selectedOptions[0].previousElementSibling;
+          if (prevOption) {
+            areaSelect.value = prevOption.value;
+          }
+          break;
+
+        case 'ArrowDown':
+          e.preventDefault();
+          const nextOption = areaSelect.selectedOptions[0].nextElementSibling;
+          if (nextOption) {
+            areaSelect.value = nextOption.value;
+          }
+          break;
+
+        case 'ArrowLeft':
+          e.preventDefault();
+          typeSelect.value = 'important';
+          break;
+
+        case 'ArrowRight':
+          e.preventDefault();
+          typeSelect.value = 'urgent';
+          break;
+
+        case 'Escape':
+          e.preventDefault();
+          window.location.href = '/planning';
+          break;
+      }
+    });
+  });
+</script> 

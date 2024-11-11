@@ -12,6 +12,7 @@ class Area < Sequel::Model
 
   def before_create
     self.position ||= Area.count
+    self.active = true if active.nil?
     super
   end
 end 

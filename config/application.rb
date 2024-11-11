@@ -1,7 +1,15 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require 'dotenv/load'
+require 'semantic_logger'
 require_relative 'database'
+
+# Configure logging
+SemanticLogger.default_level = :info
+SemanticLogger.add_appender(
+  io: $stdout,
+  formatter: :color
+)
 
 # Verify required environment variables are set
 %w[USERNAME PASSWORD].each do |var|
@@ -12,8 +20,16 @@ end
 
 module TaskTao
   class Application < Sinatra::Base
+    # Include logging
+    include SemanticLogger::Loggable
+
     configure :development do
       register Sinatra::Reloader
+      logger.level = :debug
+    end
+
+    configure :production do
+      logger.level = :info
     end
 
     configure do
@@ -21,6 +37,22 @@ module TaskTao
       set :views, settings.root + 'app/views'
       set :public_folder, settings.root + 'public'
       enable :method_override
+      enable :logging
+    end
+
+    # Add request logging
+    use Rack::CommonLogger, SemanticLogger[Application]
+
+    # Log all requests
+    before do
+      logger.debug "Request: #{request.request_method} #{request.path}",
+        params: params.inspect,
+        headers: request.env.select { |k,v| k.start_with?('HTTP_') }
+    end
+
+    # Log all responses
+    after do
+      logger.debug "Response: #{response.status}"
     end
 
     # Load all models

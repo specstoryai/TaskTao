@@ -23,28 +23,28 @@ TaskTao is a single-user web application for managing tasks across multiple area
 ## Local Development Setup
 
 1. **Prerequisites**:
-   - Ruby 3.x
+   - Ruby 3.3.x
    - PostgreSQL
    - Git
 
-1. **Clone the repository**:
+2. **Clone the repository**:
    ```bash
    git clone https://github.com/yourusername/tasktao.git
    cd tasktao
    ```
 
-2. **Install dependencies**:
+3. **Install dependencies**:
    ```bash
    bundle install
    ```
 
-3. **Set up environment variables**:
+4. **Set up environment variables**:
    ```bash
    cp .env.example .env
    # Edit .env with your credentials
    ```
 
-4. **Set up the database**:
+5. **Set up the database**:
    ```bash
    # Create the database
    createdb tasktao_development
@@ -53,12 +53,12 @@ TaskTao is a single-user web application for managing tasks across multiple area
    rake db:migrate
    ```
 
-5. **Start the server**:
+6. **Start the server**:
    ```bash
    bundle exec puma
    ```
 
-6. **Access the application**:
+7. **Access the application**:
    - Open http://localhost:9292
    - Use the credentials set in your .env file
 
@@ -211,3 +211,14 @@ To check test coverage:
 COVERAGE=true bundle exec rspec
 ```
 Coverage report will be generated in `coverage/index.html` 
+
+## Keyboard Shortcuts
+
+### Global Shortcuts
+- `Command+/` (Mac) or `Ctrl+/` (Windows/Linux): Open Capture mode from anywhere
+
+### Capture Mode
+- `↑/↓`: Change area
+- `←/→`: Change task type (Important/Urgent)
+- `Enter`: Save task
+- `Esc`: Cancel and return to previous mode

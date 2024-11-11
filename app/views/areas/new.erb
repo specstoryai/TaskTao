@@ -1,0 +1,37 @@
+<div>
+  <h3 class="font-bold text-lg mb-4">New Area</h3>
+  
+  <form hx-post="/areas" 
+        hx-target="body"
+        hx-swap="innerHTML">
+    <div class="space-y-4">
+      <div class="form-control">
+        <label class="label">Title</label>
+        <input type="text" 
+               name="area[title]" 
+               class="input input-bordered w-full"
+               required
+               autofocus>
+      </div>
+
+      <div class="form-control">
+        <label class="label">Description</label>
+        <textarea name="area[description]" 
+                  class="textarea textarea-bordered h-24"></textarea>
+      </div>
+
+      <div class="form-control">
+        <label class="label">Color</label>
+        <input type="color" 
+               name="area[color]" 
+               value="#4A5568"
+               class="input input-bordered w-full h-12">
+      </div>
+
+      <div class="modal-action">
+        <button type="button" class="btn" onclick="modal.close()">Cancel</button>
+        <button type="submit" class="btn btn-primary">Create Area</button>
+      </div>
+    </div>
+  </form>
+</div> 

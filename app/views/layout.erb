@@ -8,7 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="min-h-screen bg-base-100">
+<body class="min-h-screen bg-base-100" hx-ext="response-targets">
   <div class="navbar bg-base-200">
     <div class="flex-1">
       <a href="/" class="btn btn-ghost text-xl">TaskTao</a>
@@ -26,8 +26,43 @@
     <%= yield %>
   </div>
 
-  <div id="modal" class="modal">
-    <div class="modal-box"></div>
-  </div>
+  <!-- Modal -->
+  <dialog id="modal" class="modal">
+    <div class="modal-box !bg-white !p-6 !max-w-xl !rounded-lg !shadow-2xl">
+      <!-- Modal content will be loaded here -->
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button>close</button>
+    </form>
+  </dialog>
+
+  <script>
+    // Modal handling
+    htmx.on('htmx:beforeSwap', function(evt) {
+      if (evt.detail.target.id === 'modal') {
+        const modal = document.getElementById('modal');
+        modal.showModal();
+      }
+    });
+
+    htmx.on('htmx:afterSwap', function(evt) {
+      if (evt.detail.target.id === 'modal') {
+        evt.detail.target.querySelector('input[autofocus]')?.focus();
+      }
+    });
+
+    // Global keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+      // Command+/ or Ctrl+/
+      if ((e.metaKey || e.ctrlKey) && e.key === '/') {
+        console.log('Capture shortcut triggered!');
+        e.preventDefault();
+        window.location.href = '/capture';
+      }
+    });
+
+    // Debug logging
+    htmx.logAll();
+  </script>
 </body>
 </html> 
