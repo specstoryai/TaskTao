@@ -1,6 +1,6 @@
 # Overview
 
-TaskTao is an app for managing tasks. 
+TaskTao is an MI licesned open source app for managing tasks. 
 
 TaskTao is for people that work on multiple things. They have multiple areas of responsibility and focus. They work on many projects.
 
