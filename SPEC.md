@@ -221,6 +221,12 @@ Database:
 - Connection string from ENV variables
 - Rake tasks for database operations
 
+Logging:
+- Add debug logging to all the server calls, so it's easy to see when they happen.
+- Use structured logging with Semantic Logger.
+- Log the request parameters and response status for all requests.
+- Log the errors for all failed requests.
+
 ### Directory Structure
 
 ```
