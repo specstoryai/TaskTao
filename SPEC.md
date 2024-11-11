@@ -1,6 +1,7 @@
 # Overview
 
-TaskTao is an MI licesned open source app for managing tasks. 
+TaskTao is an experiment is Intent Driven Development using a specification (this file) to drive the development.
+TaskTao is a single-user web application for managing tasks. 
 
 TaskTao is for people that work on multiple things. They have multiple areas of responsibility and focus. They work on many projects.
 
@@ -11,6 +12,8 @@ It has a simple mode for capturing new tasks.
 It has a planning mode for maintaining areas and tasks, and for planning the tasks of the day.
 
 It has an action mode for taking action on the tasks of the day.
+
+TaskTao is MIT licensed.
 
 ## Product
 
