@@ -12,6 +12,7 @@ require_relative '../config/application'
 # Explicitly require models
 Dir[File.join(File.dirname(__FILE__), '..', 'app', 'models', '*.rb')].each { |file| require file }
 
+# Configure RSpec
 RSpec.configure do |config|
   config.include Rack::Test::Methods
   config.include FactoryBot::Syntax::Methods
@@ -38,8 +39,20 @@ RSpec.configure do |config|
   # Add logging for tests
   SemanticLogger.add_appender(io: File.open('log/test.log', 'a'))
   SemanticLogger.default_level = :debug
+
+  # Disable logging during tests unless specifically wanted
+  config.before(:each) do
+    allow_any_instance_of(TaskTao::Application).to receive(:logger).and_return(
+      double('logger').as_null_object
+    )
+  end
 end
 
+# Set up test environment
 def app
-  TaskTao::Application
+  TaskTao::Application.tap do |app|
+    app.set :environment, :test
+    app.set :session_secret, 'test'
+    app.set :sessions, true
+  end
 end 

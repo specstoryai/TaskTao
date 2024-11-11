@@ -10,19 +10,20 @@
     
     <input type="date" 
            value="<%= @date %>"
+           max="<%= Date.today %>"
            class="input input-bordered"
            hx-get="/planning"
            hx-trigger="change"
            hx-push-url="true"
            name="date">
     
-    <button class="btn btn-ghost"
-            hx-get="/planning?date=<%= @date + 1 %>"
-            hx-push-url="true">
-      Next Day
-    </button>
+    <% if @date < Date.today %>
+      <button class="btn btn-ghost"
+              hx-get="/planning?date=<%= @date + 1 %>"
+              hx-push-url="true">
+        Next Day
+      </button>
 
-    <% if @date != Date.today %>
       <button class="btn btn-primary"
               hx-get="/planning"
               hx-push-url="true">

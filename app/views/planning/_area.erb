@@ -3,9 +3,6 @@
     <div class="flex justify-between items-center">
       <h2 class="card-title">
         <%= area.title %>
-        <div class="badge <%= area.active ? 'badge-success' : 'badge-ghost' %>">
-          <%= area.active ? 'Active' : 'Inactive' %>
-        </div>
       </h2>
       
       <div class="dropdown dropdown-end">
@@ -25,26 +22,27 @@
       <p class="text-gray-500"><%= area.description %></p>
     <% end %>
 
-    <div class="divider">Important Tasks</div>
-    <div class="space-y-4">
-      <%= erb :'planning/_task_list', locals: { tasks: area.tasks.select { |t| t.type == 'important' }, date: date } %>
-    </div>
+    <div class="grid grid-cols-2 gap-8 mt-4">
+      <div>
+        <div class="font-bold mb-2">Important Tasks</div>
+        <div class="space-y-4">
+          <%= erb :'planning/_task_list', locals: { tasks: area.tasks.select { |t| t.type == 'important' }, date: date } %>
+        </div>
+      </div>
 
-    <div class="divider">Urgent Tasks</div>
-    <div class="space-y-4">
-      <%= erb :'planning/_task_list', locals: { tasks: area.tasks.select { |t| t.type == 'urgent' }, date: date } %>
+      <div>
+        <div class="font-bold mb-2">Urgent Tasks</div>
+        <div class="space-y-4">
+          <%= erb :'planning/_task_list', locals: { tasks: area.tasks.select { |t| t.type == 'urgent' }, date: date } %>
+        </div>
+      </div>
     </div>
 
     <div class="card-actions justify-end mt-4">
       <button class="btn btn-ghost btn-sm"
-              hx-get="/tasks/new?area_id=<%= area.id %>&type=important"
+              hx-get="/tasks/new?area_id=<%= area.id %>"
               hx-target="#modal">
-        Add Important Task
-      </button>
-      <button class="btn btn-ghost btn-sm"
-              hx-get="/tasks/new?area_id=<%= area.id %>&type=urgent"
-              hx-target="#modal">
-        Add Urgent Task
+        Add Task
       </button>
     </div>
   </div>

@@ -1,0 +1,71 @@
+<div>
+  <h3 class="font-bold text-lg mb-4">New Task</h3>
+  
+  <form hx-post="/tasks" 
+        hx-target="body"
+        hx-swap="innerHTML">
+    <div class="space-y-4">
+      <input type="hidden" name="task[area_id]" value="<%= @area.id %>">
+
+      <div class="form-control">
+        <label class="label">Title</label>
+        <input type="text" 
+               name="task[title]" 
+               class="input input-bordered w-full"
+               id="task-title"
+               required
+               autofocus>
+      </div>
+
+      <div class="form-control">
+        <label class="label">Description</label>
+        <textarea name="task[description]" 
+                  class="textarea textarea-bordered h-24"></textarea>
+      </div>
+
+      <div class="form-control">
+        <label class="label">Type</label>
+        <select name="task[type]" 
+                class="select select-bordered w-full"
+                id="task-type">
+          <option value="important" selected>Important</option>
+          <option value="urgent">Urgent</option>
+        </select>
+      </div>
+
+      <div class="modal-action">
+        <button type="button" class="btn" onclick="modal.close()">Cancel</button>
+        <button type="submit" class="btn btn-primary">Create Task</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const titleInput = document.getElementById('task-title');
+    const typeSelect = document.getElementById('task-type');
+
+    document.addEventListener('keydown', function(e) {
+      // Only handle shortcuts when title input is focused
+      if (document.activeElement !== titleInput) return;
+
+      switch(e.key) {
+        case 'ArrowLeft':
+          e.preventDefault();
+          typeSelect.value = 'important';
+          break;
+
+        case 'ArrowRight':
+          e.preventDefault();
+          typeSelect.value = 'urgent';
+          break;
+
+        case 'Escape':
+          e.preventDefault();
+          modal.close();
+          break;
+      }
+    });
+  });
+</script> 

@@ -74,4 +74,12 @@ class TaskTao::Application
     task.update(position: params[:position])
     200
   end
+
+  # Show task creation form
+  get '/tasks/new' do
+    logger.info "Handling tasks/new request", area_id: params[:area_id], type: params[:type]
+    @area = Area[params[:area_id]]
+    @type = params[:type]
+    erb :'tasks/new', layout: false
+  end
 end 
