@@ -1,6 +1,7 @@
 # Overview
 
 TaskTao is an experiment is Intent Driven Development using a specification (this file) to drive the development.
+
 TaskTao is a single-user web application for managing tasks. 
 
 TaskTao is for people that work on multiple things. They have multiple areas of responsibility and focus. They work on many projects.
