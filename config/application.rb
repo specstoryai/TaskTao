@@ -38,6 +38,8 @@ module TaskTao
       set :public_folder, settings.root + 'public'
       enable :method_override
       enable :logging
+      enable :sessions
+      set :session_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
     end
 
     # Add request logging
