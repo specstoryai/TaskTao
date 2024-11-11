@@ -178,6 +178,10 @@ TaskTao has a comprehensive test suite focused on business logic and domain-spec
 ### Running Tests
 
 ```bash
+# Create and migrate test database
+createdb tasktao_test
+RACK_ENV=test rake db:migrate
+
 # Run all tests
 bundle exec rspec
 
