@@ -21,16 +21,17 @@ TaskTao is MIT licensed.
 
 Areas are an important concept in TaskTao. Areas can correspond to areas of responsibility, or focus. They can be projects, or roles, or teams, or anything else. They are the containers for categories of tasks. 
 
-Tasks within an area are separated into "Important" and "Urgent" tasks.
+Tasks within an area are separated into "Important" and "Urgent" tasks. These lists of tasks are displayed side by side in the area.
 
-- Areas have a title, and an optional description.
+- Areas have a title.
 - Areas can be active or inactive.
 - Areas have important tasks and urgent tasks. 
 - Areas have a color.
 - Areas can be created, updated, and deleted.
 - Areas can be reordered.
-- Areas can have their title and description edited.
+- Areas can have their title edited.
 - Areas can have their color edited.
+- Areas can be reordered with drag and drop.
 
 ### Tasks
 
@@ -47,7 +48,11 @@ Importantly, tasks are either "Important", "Urgent" or "Routines". There is no o
 - Tasks have a creation and last updated timestamp.
 - Tasks take the color of the area they are associated with.
 - Tasks can be created, updated, and deleted.
-- Tasks can be reordered within their area.
+- Tasks can be reordered within their area with the up and down arrow keys.
+- Tasks can be reordered within their area with drag and drop.
+- Tasks can be moved to a different area with drag and drop.
+- Tasks can be changed from one task type to another with the left and right arrow keys.
+- Tasks can be changed from one task type to another with drag and drop.
 - Tasks can be completed.
 - Tasks can be toggled as for today.
 
@@ -124,15 +129,17 @@ The day is shown prominently at the top of the screen.
 - It allows for task completion.
 - It allows for task deletion.  
 
-During planning, the user can navigate to prior days using the "Previous Day" and "Next Day" buttons, as well as a calendar picker. When not looking at today, the user can navigate to today.
+- The user can navigate to prior days using the "Previous Day" and "Next Day" buttons, as well as a calendar picker. 
+- Don't provide navigation to the next day if it's past today, meaning in the future. 
+- Don't allow the calendar picker to select days in the future.
+- When not looking at today, the user can navigate to today.
 
-When looking at today, only tasks that are not completed, or are not completed on today are shown. Tasks that are completed today are shown as completed.
+- When looking at today, only tasks that are not completed, or are not completed on today are shown.
+- When looking at today, tasks that are completed today are shown as completed.
 
-When not looking at today, only tasks created before the selected day, and not completed before the selected day are shown.
-
-When not looking at today, tasks that are completed on the selected day are shown as completed.
-
-When not looking at today, the rest of the user interface is readonly.
+- When not looking at today, only tasks created before the selected day, and not completed before the selected day are shown.
+- When not looking at today, tasks that are completed on the selected day are shown as completed.
+- When not looking at today, the rest of the user interface is readonly.
 
 #### Action
 
