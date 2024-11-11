@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 RSpec.describe Area do
   describe "business rules" do
     it "maintains task order within the area" do

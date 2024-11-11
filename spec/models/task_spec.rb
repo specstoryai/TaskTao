@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 RSpec.describe Task do
   describe "business rules" do
     it "can only be important or urgent" do

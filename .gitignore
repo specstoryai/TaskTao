@@ -49,4 +49,7 @@ Thumbs.db
 
 # Local development
 /public/assets
-.sass-cache/ 
+.sass-cache/
+
+# Test artifacts
+/coverage/

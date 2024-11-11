@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 RSpec.describe Routine do
   describe "completion reset rules" do
     let(:routine) { create(:routine, completed: true, completed_at: Time.now) }
