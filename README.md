@@ -1,6 +1,8 @@
 # TaskTao
 
-TaskTao is a single-user web application for managing tasks across multiple areas of responsibility. It provides three focused modes: Capture, Planning, and Action.
+TaskTao is an experiment is Intent Driven Development using a [specification](SPEC.md) to drive the development. 
+
+TaskTao is a single-user web application for managing tasks.
 
 ## Features
 
@@ -210,15 +212,4 @@ To check test coverage:
 ```bash
 COVERAGE=true bundle exec rspec
 ```
-Coverage report will be generated in `coverage/index.html` 
-
-## Keyboard Shortcuts
-
-### Global Shortcuts
-- `Command+/` (Mac) or `Ctrl+/` (Windows/Linux): Open Capture mode from anywhere
-
-### Capture Mode
-- `↑/↓`: Change area
-- `←/→`: Change task type (Important/Urgent)
-- `Enter`: Save task
-- `Esc`: Cancel and return to previous mode
+Coverage report will be generated in `coverage/index.html`
